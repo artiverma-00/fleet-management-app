@@ -1,86 +1,94 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>admin dashboard</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fleet App - Admin</title>
+  <style></style>
+
 </head>
-
 <body>
-              <header class="navbar">
-                            <h2 class="brand">Fleet Management Dashboard</h2>
-                            <div class="nav-right">
-                                          <select id="filterCategory" class="nav-select">
-                                                        <option value="All">All Categories</option>
-                                                        <option>Auto</option>
-                                                        <option>Car</option>
-                                                        <option>Truck</option>
-                                                        <option>Bus</option>
-                                          </select>
-                                          <select id="filterAvailability" class="nav-select">
-                                                        <option value="All">All Availability</option>
-                                                        <option value="Unavailable">Unavailable</option>
 
-                                          </select>
-                                          <button id="clearFilters" class="btn small">Clear</button>
-                            </div>
+ 
+  <header class="navbar">
+    <h2 class="brand">Fleet Management Dashboard</h2>
 
+    <div class="nav-right">
+      <select id="filterCategory" class="nav-select">
+        <option value="All">All Categories</option>
+        <option>Auto</option>
+        <option>Car</option>
+        <option>Truck</option>
+        <option>Bus</option>
+      </select>
 
+      <select id="filterAvailability" class="nav-select">
+        <option value="All">All Availability</option>
+        <option value="Available">Available</option>
+        <option value="Unavailable">Unavailable</option>
+      </select>
 
-              </header>
+      <button id="clearFilters" class="btn small">Clear</button>
+    </div>
+  </header>
 
-              <!--main content-->
-              <div class="container">
-                            <!--sidebar-->
-                            <aside class="sidebar card">
-                                          <h3>Add fleet vehicle</h3>
-                                          <form id="fleetForm">
-                                                        <label>Reg No
-                                                                      <input text="text" id="regNo" placeholder="MH1234"
-                                                                                    required>
-                                                        </label>
-                                                        <lable>filter Category
-                                                                      <select id="Category" required>
-                                                                                    <option value="">select Category
-                                                                                    </option>
-                                                                                    <option>Auto</option>
-                                                                                    <option>Car</option>
-                                                                                    <option>Truck</option>
-                                                                                    <option>Bus</option>
-                                                                      </select>
-                                                        </lable>
-                                                        <br>
-                                                        <br>
-                                                        <label>Driver Name
-                                                                      <input type="text" id="driverName" placeholder="Driver Name" required>
-                                                        </label>
-                                                        <br>
-                                                        <br>
-                                                        <label class="checkbox">
-                                                                      <input type="checkbox" id="isAvailable" checked>
-                                                                      Available
-                                                        </label>
-                                                        <br>
-                                                        <br>
-                                                        <button type="submit" class="btnfull">Add Fleet</button>
+  <!-- MAIN LAYOUT -->
+  <div class="container">
 
-                                          </form>
-                            </aside>
-                            <main class="main-area">
-                                          <div id="fleetGrid" class="cards-grid"></div>
-                                          <p id="emptyMsg" class="muted" style="display:none; margin-top:12px;">No vehicles to show-add the</p>
-                            </main>
-              </div>
+    <!-- Sidebar -->
+    <aside class="sidebar card">
+      <h3>Add Fleet Vehicle</h3>
+
+      <form id="fleetForm">
+        <label>Reg No
+          <input type="text" id="regNo" placeholder="MH12AB1234" required>
+        </label>
+
+        <label>Category
+          <select id="category" required>
+            <option value="">Select Category</option>
+            <option>Auto</option>
+            <option>Car</option>
+            <option>Truck</option>
+            <option>Bus</option>
+          </select>
+        </label>
+
+        <label>Driver Name
+          <input type="text" id="driverName" placeholder="Driver Name" required>
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" id="isAvailable" checked>
+          Available
+        </label>
+
+        <button type="submit" class="btn full">Add Fleet</button>
+      </form>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-area">
+      <div id="fleetGrid" class="cards-grid"></div>
+      <p id="emptyMsg" class="muted" style="display:none; margin-top:12px;">No vehicles to show — add some from the left.</p>
+    </main>
+
+  </div>
 
 </body>
+
+
 <script>
-              (function() {
- const VEHICLE_IMG_SRC = 'https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png';
+
+
+(function() {
+  
+  const VEHICLE_IMG_SRC = 'https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png';
 
   const STORAGE_KEY = 'fleet_v1';
 
-const fleetForm = document.getElementById('fleetForm');
+  // DOM refs
+  const fleetForm = document.getElementById('fleetForm');
   const regNoInput = document.getElementById('regNo');
   const categoryInput = document.getElementById('category');
   const driverInput = document.getElementById('driverName');
@@ -126,9 +134,6 @@ const fleetForm = document.getElementById('fleetForm');
         <button class="btn tiny danger delete-vehicle">Delete Vehicle</button>
       </div>
     `;
-    
-
-
 
     // events
     card.querySelector('.update-driver').addEventListener('click', () => {
@@ -230,6 +235,7 @@ const fleetForm = document.getElementById('fleetForm');
     render();
   });
 
+  // initial render
   render();
 
   document.addEventListener('keydown', (e) => {
@@ -243,6 +249,7 @@ const fleetForm = document.getElementById('fleetForm');
     }
   });
 })();
+
 
 
 </script>
