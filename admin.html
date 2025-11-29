@@ -7,9 +7,23 @@
 </head>
 <body>
               <header class="navbar">
-                            <h2 class="nav-right">
-                                          <select></select>
-                            </h2>
+                            <h2 class="brand">Fleet Management Dashboard</h2>
+                            <div class="nav-right">
+                                          <select id="filterCategory" class="nav-select">
+                                                        <option value="All">All Categories</option>
+                                                        <option>Auto</option>
+                                                        <option>Car</option>
+                                                        <option>Truck</option>
+                                                        <option>Bus</option>
+                                          </select>
+                                          <select id="filterAvailability" class="nav-select">
+                                                        <option value="All">All Availability</option>
+                                                        <option value="Unavailable">Unavailable</option>
+
+                                          </select>
+                                          <button id="clearFilters" class="btn small">Clear</button>
+                            </div>
+                            
 
 
               </header>
