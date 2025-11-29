@@ -1,79 +1,132 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Fleet App - Admin</title>
-  <style></style>
+              <meta charset="utf-8" />
+              <meta name="viewport" content="width=device-width,initial-scale=1" />
+              <title>Fleet App - Admin</title>
+              <style>
+                            * { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Poppins', system-ui, -apple-system, Arial, sans-serif; background: #f5f6f8; color: #1a1a1a; }
+
+
+.navbar {
+  background: #ffffff;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 6px 20px rgba(8, 10, 20, 0.06);
+}
+.brand { font-weight: 600; font-size: 1.15rem; }
+.nav-right { display: flex; gap: 10px; align-items: center; }
+
+
+.nav-select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #e4e7eb;
+  background: #fff;
+  min-width: 150px;
+}
+.btn { background: #2563eb; color: #fff; border: none; padding: 10px 14px; border-radius: 8px; cursor: pointer; }
+.btn.small { padding: 8px 10px; }
+.btn.full { width: 100%; }
+
+
+.container { display: grid; grid-template-columns: 320px 1fr; gap: 20px; padding: 22px; }
+
+
+.sidebar {
+  background: #fff; padding: 18px; border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(8, 10, 20, 0.06);
+}
+.sidebar h3 { margin-bottom: 14px; font-size: 1rem; }
+.sidebar input, .sidebar select {
+  width: 100%; padding: 10px; margin-top: 6px; margin-bottom: 12px;
+  border: 1px solid #eef2f6; border-radius: 8px;
+  background: #fbfcfd;
+}
+.checkbox { display:flex; gap:8px; align-items:center; margin-bottom:10px; }
+
+
+.main-area { padding-top: 4px; }
+.cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+              </style>
 
 </head>
+
 <body>
 
- 
-  <header class="navbar">
-    <h2 class="brand">Fleet Management Dashboard</h2>
 
-    <div class="nav-right">
-      <select id="filterCategory" class="nav-select">
-        <option value="All">All Categories</option>
-        <option>Auto</option>
-        <option>Car</option>
-        <option>Truck</option>
-        <option>Bus</option>
-      </select>
+              <header class="navbar">
+                            <h2 class="brand">Fleet Management Dashboard</h2>
 
-      <select id="filterAvailability" class="nav-select">
-        <option value="All">All Availability</option>
-        <option value="Available">Available</option>
-        <option value="Unavailable">Unavailable</option>
-      </select>
+                            <div class="nav-right">
+                                          <select id="filterCategory" class="nav-select">
+                                                        <option value="All">All Categories</option>
+                                                        <option>Auto</option>
+                                                        <option>Car</option>
+                                                        <option>Truck</option>
+                                                        <option>Bus</option>
+                                          </select>
 
-      <button id="clearFilters" class="btn small">Clear</button>
-    </div>
-  </header>
+                                          <select id="filterAvailability" class="nav-select">
+                                                        <option value="All">All Availability</option>
+                                                        <option value="Available">Available</option>
+                                                        <option value="Unavailable">Unavailable</option>
+                                          </select>
 
-  <!-- MAIN LAYOUT -->
-  <div class="container">
+                                          <button id="clearFilters" class="btn small">Clear</button>
+                            </div>
+              </header>
 
-    <!-- Sidebar -->
-    <aside class="sidebar card">
-      <h3>Add Fleet Vehicle</h3>
+              <!-- MAIN LAYOUT -->
+              <div class="container">
 
-      <form id="fleetForm">
-        <label>Reg No
-          <input type="text" id="regNo" placeholder="MH12AB1234" required>
-        </label>
+                            <!-- Sidebar -->
+                            <aside class="sidebar card">
+                                          <h3>Add Fleet Vehicle</h3>
 
-        <label>Category
-          <select id="category" required>
-            <option value="">Select Category</option>
-            <option>Auto</option>
-            <option>Car</option>
-            <option>Truck</option>
-            <option>Bus</option>
-          </select>
-        </label>
+                                          <form id="fleetForm">
+                                                        <label>Reg No
+                                                                      <input type="text" id="regNo"
+                                                                                    placeholder="MH12AB1234" required>
+                                                        </label>
 
-        <label>Driver Name
-          <input type="text" id="driverName" placeholder="Driver Name" required>
-        </label>
+                                                        <label>Category
+                                                                      <select id="category" required>
+                                                                                    <option value="">Select Category
+                                                                                    </option>
+                                                                                    <option>Auto</option>
+                                                                                    <option>Car</option>
+                                                                                    <option>Truck</option>
+                                                                                    <option>Bus</option>
+                                                                      </select>
+                                                        </label>
 
-        <label class="checkbox">
-          <input type="checkbox" id="isAvailable" checked>
-          Available
-        </label>
+                                                        <label>Driver Name
+                                                                      <input type="text" id="driverName"
+                                                                                    placeholder="Driver Name" required>
+                                                        </label>
 
-        <button type="submit" class="btn full">Add Fleet</button>
-      </form>
-    </aside>
+                                                        <label class="checkbox">
+                                                                      <input type="checkbox" id="isAvailable" checked>
+                                                                      Available
+                                                        </label>
 
-    <!-- Main Content -->
-    <main class="main-area">
-      <div id="fleetGrid" class="cards-grid"></div>
-      <p id="emptyMsg" class="muted" style="display:none; margin-top:12px;">No vehicles to show — add some from the left.</p>
-    </main>
+                                                        <button type="submit" class="btn full">Add Fleet</button>
+                                          </form>
+                            </aside>
 
-  </div>
+                            <!-- Main Content -->
+                            <main class="main-area">
+                                          <div id="fleetGrid" class="cards-grid"></div>
+                                          <p id="emptyMsg" class="muted" style="display:none; margin-top:12px;">No
+                                                        vehicles to show — add some from the left.</p>
+                            </main>
+
+              </div>
 
 </body>
 
@@ -81,46 +134,46 @@
 <script>
 
 
-(function() {
-  
-  const VEHICLE_IMG_SRC = 'https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png';
+              (function () {
 
-  const STORAGE_KEY = 'fleet_v1';
+                            const VEHICLE_IMG_SRC = 'https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png';
 
-  // DOM refs
-  const fleetForm = document.getElementById('fleetForm');
-  const regNoInput = document.getElementById('regNo');
-  const categoryInput = document.getElementById('category');
-  const driverInput = document.getElementById('driverName');
-  const isAvailableInput = document.getElementById('isAvailable');
+                            const STORAGE_KEY = 'fleet_v1';
 
-  const fleetGrid = document.getElementById('fleetGrid');
-  const emptyMsg = document.getElementById('emptyMsg');
+                            // DOM refs
+                            const fleetForm = document.getElementById('fleetForm');
+                            const regNoInput = document.getElementById('regNo');
+                            const categoryInput = document.getElementById('category');
+                            const driverInput = document.getElementById('driverName');
+                            const isAvailableInput = document.getElementById('isAvailable');
 
-  const filterCategory = document.getElementById('filterCategory');
-  const filterAvailability = document.getElementById('filterAvailability');
-  const clearFiltersBtn = document.getElementById('clearFilters');
+                            const fleetGrid = document.getElementById('fleetGrid');
+                            const emptyMsg = document.getElementById('emptyMsg');
 
-  // load initial data from localStorage
-  let fleetData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+                            const filterCategory = document.getElementById('filterCategory');
+                            const filterAvailability = document.getElementById('filterAvailability');
+                            const clearFiltersBtn = document.getElementById('clearFilters');
 
-  // helper: persist
-  function save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(fleetData));
-  }
+                            // load initial data from localStorage
+                            let fleetData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
 
-  // helper: escape
-  function esc(s) {
-    if (s === undefined || s === null) return '';
-    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+                            // helper: persist
+                            function save() {
+                                          localStorage.setItem(STORAGE_KEY, JSON.stringify(fleetData));
+                            }
 
-  // create card DOM for a vehicle
-  function createCard(vehicle) {
-    const card = document.createElement('div');
-    card.className = 'fleet-card';
+                            // helper: escape
+                            function esc(s) {
+                                          if (s === undefined || s === null) return '';
+                                          return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+                            }
 
-    card.innerHTML = `
+                            // create card DOM for a vehicle
+                            function createCard(vehicle) {
+                                          const card = document.createElement('div');
+                                          card.className = 'fleet-card';
+
+                                          card.innerHTML = `
       <img src="${VEHICLE_IMG_SRC}" alt="vehicle image" class="vehicle-img">
       <div class="card-body">
         <div class="card-row"><strong>Reg No:</strong> <span class="muted">${esc(vehicle.regNo)}</span></div>
@@ -135,124 +188,123 @@
       </div>
     `;
 
-    // events
-    card.querySelector('.update-driver').addEventListener('click', () => {
-      const newName = prompt('Enter new driver name:', vehicle.driverName || '');
-      if (newName === null) return; // cancelled
-      if (newName.trim() === '') {
-        alert('Driver name cannot be empty.');
-        return;
-      }
-      const idx = fleetData.findIndex(v => v.id === vehicle.id);
-      if (idx !== -1) {
-        fleetData[idx].driverName = newName.trim();
-        save();
-        render();
-      }
-    });
+                                          // events
+                                          card.querySelector('.update-driver').addEventListener('click', () => {
+                                                        const newName = prompt('Enter new driver name:', vehicle.driverName || '');
+                                                        if (newName === null) return; // cancelled
+                                                        if (newName.trim() === '') {
+                                                                      alert('Driver name cannot be empty.');
+                                                                      return;
+                                                        }
+                                                        const idx = fleetData.findIndex(v => v.id === vehicle.id);
+                                                        if (idx !== -1) {
+                                                                      fleetData[idx].driverName = newName.trim();
+                                                                      save();
+                                                                      render();
+                                                        }
+                                          });
 
-    card.querySelector('.toggle-availability').addEventListener('click', () => {
-      const idx = fleetData.findIndex(v => v.id === vehicle.id);
-      if (idx !== -1) {
-        fleetData[idx].isAvailable = !fleetData[idx].isAvailable;
-        save();
-        render();
-      }
-    });
+                                          card.querySelector('.toggle-availability').addEventListener('click', () => {
+                                                        const idx = fleetData.findIndex(v => v.id === vehicle.id);
+                                                        if (idx !== -1) {
+                                                                      fleetData[idx].isAvailable = !fleetData[idx].isAvailable;
+                                                                      save();
+                                                                      render();
+                                                        }
+                                          });
 
-    card.querySelector('.delete-vehicle').addEventListener('click', () => {
-      const ok = confirm('Are you sure you want to delete this vehicle?');
-      if (!ok) return;
-      fleetData = fleetData.filter(v => v.id !== vehicle.id);
-      save();
-      render();
-    });
+                                          card.querySelector('.delete-vehicle').addEventListener('click', () => {
+                                                        const ok = confirm('Are you sure you want to delete this vehicle?');
+                                                        if (!ok) return;
+                                                        fleetData = fleetData.filter(v => v.id !== vehicle.id);
+                                                        save();
+                                                        render();
+                                          });
 
-    return card;
-  }
+                                          return card;
+                            }
 
-  // render grid with filters applied
-  function render() {
-    const catFilter = filterCategory.value;
-    const availFilter = filterAvailability.value;
+                            // render grid with filters applied
+                            function render() {
+                                          const catFilter = filterCategory.value;
+                                          const availFilter = filterAvailability.value;
 
-    const filtered = fleetData.filter(v => {
-      let ok = true;
-      if (catFilter && catFilter !== 'All') ok = ok && (v.category === catFilter);
-      if (availFilter && availFilter !== 'All') ok = ok && ((v.isAvailable ? 'Available' : 'Unavailable') === availFilter);
-      return ok;
-    });
+                                          const filtered = fleetData.filter(v => {
+                                                        let ok = true;
+                                                        if (catFilter && catFilter !== 'All') ok = ok && (v.category === catFilter);
+                                                        if (availFilter && availFilter !== 'All') ok = ok && ((v.isAvailable ? 'Available' : 'Unavailable') === availFilter);
+                                                        return ok;
+                                          });
 
-    fleetGrid.innerHTML = '';
-    if (filtered.length === 0) {
-      emptyMsg.style.display = 'block';
-    } else {
-      emptyMsg.style.display = 'none';
-    }
+                                          fleetGrid.innerHTML = '';
+                                          if (filtered.length === 0) {
+                                                        emptyMsg.style.display = 'block';
+                                          } else {
+                                                        emptyMsg.style.display = 'none';
+                                          }
 
-    filtered.forEach(v => {
-      const card = createCard(v);
-      fleetGrid.appendChild(card);
-    });
-  }
+                                          filtered.forEach(v => {
+                                                        const card = createCard(v);
+                                                        fleetGrid.appendChild(card);
+                                          });
+                            }
 
-  // form submit
-  fleetForm.addEventListener('submit', function(e) {
-    e.preventDefault();
+                            // form submit
+                            fleetForm.addEventListener('submit', function (e) {
+                                          e.preventDefault();
 
-    const regNo = regNoInput.value.trim();
-    const category = categoryInput.value;
-    const driverName = driverInput.value.trim();
-    const isAvailable = !!isAvailableInput.checked;
+                                          const regNo = regNoInput.value.trim();
+                                          const category = categoryInput.value;
+                                          const driverName = driverInput.value.trim();
+                                          const isAvailable = !!isAvailableInput.checked;
 
-    // validation
-    if (!regNo) { alert('Reg No is required.'); return; }
-    if (!category) { alert('Please select a category.'); return; }
-    if (!driverName) { alert('Driver name is required.'); return; }
+                                          // validation
+                                          if (!regNo) { alert('Reg No is required.'); return; }
+                                          if (!category) { alert('Please select a category.'); return; }
+                                          if (!driverName) { alert('Driver name is required.'); return; }
 
-    // create vehicle
-    const vehicle = {
-      id: Date.now().toString() + Math.random().toString(36).slice(2,6),
-      regNo, category, driverName, isAvailable
-    };
+                                          // create vehicle
+                                          const vehicle = {
+                                                        id: Date.now().toString() + Math.random().toString(36).slice(2, 6),
+                                                        regNo, category, driverName, isAvailable
+                                          };
 
-    fleetData.push(vehicle);
-    save();
+                                          fleetData.push(vehicle);
+                                          save();
 
-    // clear form
-    fleetForm.reset();
-    isAvailableInput.checked = true;
+                                          // clear form
+                                          fleetForm.reset();
+                                          isAvailableInput.checked = true;
 
-    render();
-  });
+                                          render();
+                            });
 
-  // filters
-  filterCategory.addEventListener('change', render);
-  filterAvailability.addEventListener('change', render);
-  clearFiltersBtn.addEventListener('click', () => {
-    filterCategory.value = 'All';
-    filterAvailability.value = 'All';
-    render();
-  });
+                            // filters
+                            filterCategory.addEventListener('change', render);
+                            filterAvailability.addEventListener('change', render);
+                            clearFiltersBtn.addEventListener('click', () => {
+                                          filterCategory.value = 'All';
+                                          filterAvailability.value = 'All';
+                                          render();
+                            });
 
-  // initial render
-  render();
+                            // initial render
+                            render();
 
-  document.addEventListener('keydown', (e) => {
-    if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
-      if (confirm('Clear fleet data?')) {
-        localStorage.removeItem(STORAGE_KEY);
-        fleetData = [];
-        render();
-        alert('Cleared');
-      }
-    }
-  });
-})();
+                            document.addEventListener('keydown', (e) => {
+                                          if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'c') {
+                                                        if (confirm('Clear fleet data?')) {
+                                                                      localStorage.removeItem(STORAGE_KEY);
+                                                                      fleetData = [];
+                                                                      render();
+                                                                      alert('Cleared');
+                                                        }
+                                          }
+                            });
+              })();
 
 
 
 </script>
 
 </html>
- 
