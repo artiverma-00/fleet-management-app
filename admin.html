@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <title>admin dashboard</title>
 </head>
+
 <body>
               <header class="navbar">
                             <h2 class="brand">Fleet Management Dashboard</h2>
@@ -23,11 +25,37 @@
                                           </select>
                                           <button id="clearFilters" class="btn small">Clear</button>
                             </div>
-                            
+
 
 
               </header>
-              
+
+              <!--main content-->
+              <div class="container">
+                            <!--sidebar-->
+                            <aside class="sidebar card">
+                                          <h3>Add fleet vehicle</h3>
+                                          <form id="fleetForm">
+                                                        <label>Reg No
+                                                                      <input text="text" id="regNo" placeholder="MH1234"
+                                                                                    required>
+                                                        </label>
+                                                        <lable>filterCategory
+                                                                      <select id="Category" required>
+                                                                                    <option value="">select Category
+                                                                                    </option>
+                                                                                    <option>Auto</option>
+                                                                                    <option>Car</option>
+                                                                                    <option>Truck</option>
+                                                                                    <option>Bus</option>
+                                                                      </select>
+                                                        </lable>
+                                                        
+                                          </form>
+                            </aside>
+              </div>
+
 </body>
+
 </html>
 <!--img https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png-->
