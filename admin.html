@@ -75,8 +75,60 @@
 
 </body>
 <script>
-              
+              (function() {
+ const VEHICLE_IMG_SRC = 'https://via.placeholder.com/800x450?text=Vehicle+Image';
+
+  const STORAGE_KEY = 'fleet_v1';
+
+const fleetForm = document.getElementById('fleetForm');
+  const regNoInput = document.getElementById('regNo');
+  const categoryInput = document.getElementById('category');
+  const driverInput = document.getElementById('driverName');
+  const isAvailableInput = document.getElementById('isAvailable');
+
+  const fleetGrid = document.getElementById('fleetGrid');
+  const emptyMsg = document.getElementById('emptyMsg');
+
+  const filterCategory = document.getElementById('filterCategory');
+  const filterAvailability = document.getElementById('filterAvailability');
+  const clearFiltersBtn = document.getElementById('clearFilters');
+
+  // load initial data from localStorage
+  let fleetData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+
+  // helper: persist
+  function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fleetData));
+  }
+
+  // helper: escape
+  function esc(s) {
+    if (s === undefined || s === null) return '';
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  // create card DOM for a vehicle
+  function createCard(vehicle) {
+    const card = document.createElement('div');
+    card.className = 'fleet-card';
+
+    card.innerHTML = `
+      <img src="${VEHICLE_IMG_SRC}" alt="vehicle image" class="vehicle-img">
+      <div class="card-body">
+        <div class="card-row"><strong>Reg No:</strong> <span class="muted">${esc(vehicle.regNo)}</span></div>
+        <div class="card-row"><strong>Category:</strong> <span class="muted">${esc(vehicle.category)}</span></div>
+        <div class="card-row"><strong>Driver:</strong> <span class="muted driver-name">${esc(vehicle.driverName)}</span></div>
+        <div class="card-row"><strong>Availability:</strong> <span class="status">${vehicle.isAvailable ? 'Available' : 'Unavailable'}</span></div>
+      </div>
+      <div class="card-actions">
+        <button class="btn tiny update-driver">Update Driver</button>
+        <button class="btn tiny toggle-availability">${vehicle.isAvailable ? 'Mark Unavailable' : 'Mark Available'}</button>
+        <button class="btn tiny danger delete-vehicle">Delete Vehicle</button>
+      </div>
+    `;
+}
+  });
 </script>
 
 </html>
-<!--img https://coding-platform.s3.amazonaws.com/dev/lms/tickets/5e80fcb6-3f8e-480c-945b-30a5359eb40e/JNmYjkVr3WOjsrbu.png-->
+ 
